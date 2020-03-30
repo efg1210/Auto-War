@@ -1,10 +1,12 @@
+import java.util.*;
 
 public class Main {
     private Scanner in;
 
-
     public static void main (String[] args) {
-        startup();
+        Utils.populateDeck();
+        Main main = new Main();
+        main.startup();
     }
 
     public Main() {
@@ -12,6 +14,6 @@ public class Main {
     }
 
     public void startup() {
-
+        
     }
 }
