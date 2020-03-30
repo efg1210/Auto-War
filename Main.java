@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Main {
     private Scanner in;
@@ -11,7 +12,7 @@ public class Main {
         this.in = new Scanner(System.in);
     }
 
-    public void startup() {
-
+    public static void startup() {
+    	Poker.start();
     }
 }
