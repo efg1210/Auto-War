@@ -5,7 +5,7 @@ public class Main {
 
     public static void main (String[] args) {
         Utils.populateDeck();
-        Deck deck = new Deck();
+        Deck deck = new Deck<Card>();
         Main main = new Main();
         main.startup();
     }
