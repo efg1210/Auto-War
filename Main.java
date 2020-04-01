@@ -5,6 +5,7 @@ public class Main {
 
     public static void main (String[] args) {
         Utils.populateDeck();
+        Deck deck = new Deck();
         Main main = new Main();
         main.startup();
     }
