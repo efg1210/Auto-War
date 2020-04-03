@@ -9,7 +9,7 @@ public class Deck<Card> extends ArrayList<Card> {
 
     //TODO: this is a guess based on what I imagine Nicole to do
     public void sort() {
-        Collections.sort(this, (a, b) -> a.compareTo(b);
+        Collections.sort(this, (a, b) -> a.compareTo(b));
     }
 
     public Card deal() {
