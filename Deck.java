@@ -8,9 +8,9 @@ public class Deck<Card> extends ArrayList<Card> {
     }
 
     //TODO: this is a guess based on what I imagine Nicole to do
-    // public void sort() {
-    //     Collection.sort(this, (a, b) -> a.getRank().compareTo(b.getRank()));
-    // }
+    public void sort() {
+        Collections.sort(this, (a, b) -> a.compareTo(b);
+    }
 
     public Card deal() {
         int index = (int) (Math.random() * (this.size() + 1));
