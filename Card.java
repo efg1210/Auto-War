@@ -1,19 +1,19 @@
 
 public class Card implements Comparable<Card> {
-    private final String rank;
+    private final int rank;
     private final String suit;
 
     public Card(String rank, String suit) {
-        this.rank = rank;
+        this.rank = Integer.parseInt(rank);
         this.suit = suit;
     }
 
     public Card(int rank, String suit) {
-        this.rank = Integer.toString(rank);
+        this.rank = rank;
         this.suit = suit;
     }
 
-    public String getRank() {
+    public int getRank() {
         return this.rank;
     }
 
@@ -23,9 +23,9 @@ public class Card implements Comparable<Card> {
 
     @Override
     public int compareTo(Card c) {
-        if (this.getRank().compareTo(c.getRank()) < 0) {
+        if (this.getRank() < c.getRank()) {
             return -1;
-        } else if (this.getRank().compareTo(c.getRank()) > 0) {
+        } else if (this.getRank() > c.getRank()) {
             return 1;
         } else {
             if (this.getSuit().compareTo(c.getSuit()) < 0) {
@@ -39,46 +39,21 @@ public class Card implements Comparable<Card> {
 
     @Override
     public String toString() {
-        String message = "";
         switch (getRank()) {
-            case "2":
-                message += "Two of"; break;
-            case "3":
-                message += "Three of"; break;
-            case "4":
-                message += "Four of"; break;
-            case "5":
-                message += "Five of"; break;
-            case "6":
-                message += "Six of"; break;
-            case "7":
-                message += "Seven of"; break;
-            case "8":
-                message += "Eight of"; break;
-            case "9":
-                message += "Nine of"; break;
-            case "T":
-                message += "Ten of"; break;
-            case "J":
-                message += "Jack of"; break;
-            case "Q":
-                message += "Queen of"; break;
-            case "K":
-                message += "King of"; break;
-            case "A":
-                message += "Ace of"; break;
-            }
-
-        if (getSuit().equals("C")) {
-            message += " Clubs";
-        } else if (getSuit().equals("D")) {
-            message += " Diamonds";
-        } else if (getSuit().equals("H")) {
-            message += " Hearts";
-        } else if (getSuit().equals("S")) {
-            message += " Spades";
+            case 1: return "Ace of " + getSuit();
+            case 2: return "Two of " + getSuit();
+            case 3: return "Three of " + getSuit();
+            case 4: return "Four of " + getSuit();
+            case 5: return "Five of " + getSuit();
+            case 6: return "Six of " + getSuit();
+            case 7: return "Seven of " + getSuit();
+            case 8: return "Eight of " + getSuit();
+            case 9: return "Nine of " + getSuit();
+            case 10: return "Ten of " + getSuit();
+            case 11: return "Jack of " + getSuit();
+            case 12: return "Queen of " + getSuit();
+            case 13: return "King of " + getSuit();
         }
-        
-        return message;
+        return null;
     }
 }

@@ -1,1 +1,3 @@
 *.class
+poker/*.class
+blackJack/*.class
