@@ -34,7 +34,6 @@ public class Main {
     public Main() {
         this.in = new Scanner(System.in);
     }
-
     public void startup() {
         
     }
