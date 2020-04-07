@@ -1,1 +1,4 @@
+*.class
+poker/*.class
+blackJack/*.class
 /bin/
