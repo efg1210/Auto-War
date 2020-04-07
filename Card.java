@@ -1,7 +1,7 @@
 
 public class Card implements Comparable<Card> {
-    String rank;
-    String suit;
+    private final String rank;
+    private final String suit;
 
     public Card(String rank, String suit) {
         this.rank = rank;
@@ -22,7 +22,18 @@ public class Card implements Comparable<Card> {
     }
 
     @Override
-    public int compareTo(Card o) {
-        return this.getRank().compareTo(o.getRank());
+    public int compareTo(Card c) {
+        if (this.getRank().compareTo(c.getRank()) < 0) {
+            return -1;
+        } else if (this.getRank().compareTo(c.getRank()) > 0) {
+            return 1;
+        } else {
+            if (this.getSuit().compareTo(c.getSuit()) < 0) {
+                return -1;
+            } else if (this.getSuit().compareTo(c.getSuit()) > 0) {
+                return 1;
+            }
+        }
+        return 0;
     }
 }

@@ -14,7 +14,6 @@ public class Deck<Card> extends ArrayList<Card> {
 
     public Card deal() {
         int index = (int) (Math.random() * (this.size() + 1));
-
         return this.remove(index);
     }
 }
