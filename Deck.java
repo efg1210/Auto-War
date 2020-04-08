@@ -1,3 +1,4 @@
+package Deck;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +9,6 @@ public class Deck extends ArrayList<Card> {
 
     public Deck() {
         super();
-        //populate();
     }
 
     public void populate() {
