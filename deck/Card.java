@@ -1,4 +1,6 @@
 
+package deck;
+
 public class Card implements Comparable<Card> {
     private final int rank;
     private final String suit;

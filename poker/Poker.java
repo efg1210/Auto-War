@@ -1,4 +1,9 @@
+
 package poker;
+
+import deck.Card;
+import deck.Deck;
+
 import java.util.Scanner;
 
 public class Poker {
