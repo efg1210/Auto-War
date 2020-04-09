@@ -8,10 +8,10 @@ import java.util.Random;
 
 public class BlackJack {
     
-    final Scanner in;
-    int balance;
-    final String name;
-    Deck deck;
+    final private Scanner in;
+    private int balance;
+    final private String name;
+    private Deck deck;
 
     public BlackJack(Scanner in, int balance, String name) {
         this.in = in;
