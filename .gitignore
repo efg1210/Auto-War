@@ -1,4 +1,2 @@
 src/*.class
-src/poker/*.class
-src/blackJack/*.class
 /bin/
