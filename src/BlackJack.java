@@ -1,10 +1,5 @@
 
-package blackJack;
-
 import java.util.Scanner;
-
-import deck.Card;
-import deck.Deck;
 
 public class BlackJack {
     
