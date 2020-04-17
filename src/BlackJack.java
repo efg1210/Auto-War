@@ -44,20 +44,55 @@ public class BlackJack {
             Deck userHand = new Deck();
             Deck dealerHand = new Deck();
 
-            userHand.add(deck.remove(Math.random() * deck.size()));
-            userHand.add(deck.remove(Math.random() * deck.size()));
+            userHand.add((Card) deck.remove((int) Math.random() * deck.size()));
+            userHand.add((Card) deck.remove((int) Math.random() * deck.size()));
 
-            dealerHand.add(deck.remove(Math.random() * deck.size()));
-            dealerHand.add(deck.remove(Math.random() * deck.size()));
+            dealerHand.add((Card) deck.remove((int) Math.random() * deck.size()));
+            dealerHand.add((Card) deck.remove((int) Math.random() * deck.size()));
 
-            System.out.println(deck.size());
+            int userPts = 0;
+            int dealerPts = 0;
+
+
+            System.out.println("\nYour hand: ");
+            for (Card card: userHand) {
+                System.out.println(card);
+            }            
+            System.out.println("Your points: " + userPts);
+
+            System.out.println("\nDealer's first card: ");
+            System.out.println(dealerHand.get(0));
+
+            boolean stay = false;
+            while (!stay) {
+                System.out.println("Options:\n1. Hit\n2. Stay\n 3. Sort cards");
+
+            }
+
+            continuePlaying = response("Do you want to continue playing (y/n): ");
             
-            System.out.print("Do you want to continue playing (y/n): ");
-            String answer = in.nextLine();
+        }
+    }
+
+    private boolean response(String message) {
+        System.out.print(message);
+        String answer = in.nextLine();
             switch (answer) {
-                case "n": continuePlaying = false; break;
-                case "y": continuePlaying = true; break;
-                default: continuePlaying = false; break;
+                case "y": return true;
+                case "n": return false;
+                default: return false;
+            }
+    }
+
+    private int calculatePts(Deck hand) {
+        int total = 0;
+        for (Card card: hand) {
+            if (card.getRank() == 1) {
+                total += (total + 11 > 21) ? 1 : 11;
+            } else if (card.getRank() >= 10) {
+                total += 10;
+            } else {
+                total += card.getRank();
             }
         }
     }
