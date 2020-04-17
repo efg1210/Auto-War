@@ -53,12 +53,12 @@ public class BlackJack {
             int userPts = 0;
             int dealerPts = 0;
 
-
             System.out.println("\nYour hand: ");
             for (Card card: userHand) {
                 System.out.println(card);
-            }            
-            System.out.println("Your points: " + userPts);
+            }
+            //userPts = calculatePts(userHand);
+            System.out.println("Your points: " + calculatePts(userHand));
 
             System.out.println("\nDealer's first card: ");
             System.out.println(dealerHand.get(0));
@@ -66,12 +66,23 @@ public class BlackJack {
             boolean stay = false;
             while (!stay) {
                 System.out.println("Options:\n1. Hit\n2. Stay\n 3. Sort cards");
+                String answer = in.nextLine();
+                if (answer.equals("1") || (answer.toLowerCase()).equals("hit")) {
+                    userPts = calculatePts(userHand);
+                } else if (answer.equals("2") || (answer.toLowerCase()).equals("stay")) {
+                    stay = true;
+                } else if (answer.equals("3") || (answer.toLowerCase()).equals("sort") || (answer.toLowerCase()).equals("sort cards")) {
 
+                }
             }
 
             continuePlaying = response("Do you want to continue playing (y/n): ");
             
         }
+    }
+
+    private void update(Deck userHand, Deck dealerHand) {
+
     }
 
     private boolean response(String message) {
@@ -86,14 +97,21 @@ public class BlackJack {
 
     private int calculatePts(Deck hand) {
         int total = 0;
+        int aceCount = 0;
         for (Card card: hand) {
             if (card.getRank() == 1) {
-                total += (total + 11 > 21) ? 1 : 11;
+                aceCount++;
             } else if (card.getRank() >= 10) {
                 total += 10;
             } else {
                 total += card.getRank();
             }
         }
+
+        for (int i = 0; i < aceCount; i++) {
+            total += (total + 11 > 21) ? 1 : 11;
+        }
+
+        return total;
     }
 }
