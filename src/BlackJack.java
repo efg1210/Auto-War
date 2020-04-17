@@ -29,6 +29,7 @@ public class BlackJack {
     }
 
     public void start() {
+        System.out.println("Welcome to Black Jack, " + getName() + "!");
         deck.populate();
         deck.shuffle();
         boolean continuePlaying = true;
@@ -53,36 +54,39 @@ public class BlackJack {
             int userPts = 0;
             int dealerPts = 0;
 
-            System.out.println("\nYour hand: ");
-            for (Card card: userHand) {
-                System.out.println(card);
-            }
-            //userPts = calculatePts(userHand);
-            System.out.println("Your points: " + calculatePts(userHand));
-
-            System.out.println("\nDealer's first card: ");
-            System.out.println(dealerHand.get(0));
+            update(userHand, dealerHand);
 
             boolean stay = false;
             while (!stay) {
-                System.out.println("Options:\n1. Hit\n2. Stay\n 3. Sort cards");
+                System.out.println("\nOptions:\n1. Hit\n2. Stay\n3. Sort cards");
                 String answer = in.nextLine();
                 if (answer.equals("1") || (answer.toLowerCase()).equals("hit")) {
+                    userHand.add((Card) deck.remove((int) Math.random() * deck.size()));
                     userPts = calculatePts(userHand);
+                    if (userPts >= 21) {
+                        stay = true;
+                    }
                 } else if (answer.equals("2") || (answer.toLowerCase()).equals("stay")) {
                     stay = true;
                 } else if (answer.equals("3") || (answer.toLowerCase()).equals("sort") || (answer.toLowerCase()).equals("sort cards")) {
-
+                    userHand.sort();
                 }
+                update(userHand, dealerHand);
             }
 
             continuePlaying = response("Do you want to continue playing (y/n): ");
-            
         }
     }
 
     private void update(Deck userHand, Deck dealerHand) {
+        System.out.println("\nYour hand: ");
+            for (Card card: userHand) {
+                System.out.println(card);
+            }
+            System.out.println("Your points: " + calculatePts(userHand));
 
+            System.out.println("\nDealer's first card: ");
+            System.out.println(dealerHand.get(0));
     }
 
     private boolean response(String message) {
