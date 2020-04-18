@@ -1,13 +1,29 @@
-
+package src;
 import java.util.Scanner;
 
 public class Poker {
-    Scanner in;
-    int balance;
+	final private Scanner in;
+	private int balance;
+    final private String name;
+    private Deck deck;
     
-    public Poker(Scanner in, int balance) {
+    public Poker(Scanner in, int balance, String name) {
     	this.in = in;
     	this.balance = balance;
+    	this.name = name;
+    	this.deck = new Deck();
+    }
+    
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int newBalance) {
+        balance = newBalance;
+    }
+
+    public String getName() {
+        return name;
     }
     
     public static void start() {
