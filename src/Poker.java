@@ -1,4 +1,6 @@
 package src;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Poker {
@@ -56,7 +58,6 @@ public class Poker {
         	int secondBet = 0;
         	System.out.println("\nPlace another bet?\n1. Yes\n2. No");
         	yn = in.nextInt();
-        	System.out.println(yn);
         	if(yn == 1) {
         		while (secondBet <= 0 || secondBet > 10 || secondBet > balance) {
                     System.out.println("\nYour balance: " + getBalance() + " G Dollars");
@@ -67,9 +68,14 @@ public class Poker {
         		balance -= secondBet;
         		bet += secondBet;
         	}
-        	System.out.println("bet: " + bet);
-        	System.out.println("second bet: " + secondBet);
-        	System.out.println("balance: " + balance);
+        	Collections.sort(userHand);
+        	System.out.println(userHand);
+        	
+        	int yn2 = 0;
+        	System.out.println("\nTrade in?\n1. Yes\n2. No");
+        	if(yn2 == 1) {
+        		
+        	}
         	
 //        }
     	
