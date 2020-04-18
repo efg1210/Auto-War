@@ -52,7 +52,6 @@ public class BlackJack {
             dealerHand.add((Card) deck.remove((int) Math.random() * deck.size()));
 
             int userPts = calculatePts(userHand);
-            int dealerPts = calculatePts(dealerHand);
 
             update(userHand, dealerHand);
 
@@ -75,29 +74,33 @@ public class BlackJack {
                 update(userHand, dealerHand);
             }
 
-            int target = 17;
-            boolean containsAce = false;
+            System.out.println("\nYour points: " + userPts);
 
-            for (Card card : dealerHand) {
-                if (card.getRank() == 1) {
-                    containsAce = true;
-                    target = 18;
-                }
-            }
+            int dealerPts = 0;
+            if (!(userHand.size() == 2 && userPts == 21) && userPts <= 21) {
+                dealerPts = calculatePts(dealerHand);
+                int target = 17;
+                boolean containsAce = false;
 
-            while (dealerPts < target) {
-                dealerHand.add((Card) deck.remove((int) Math.random() * deck.size()));
                 for (Card card : dealerHand) {
                     if (card.getRank() == 1) {
                         containsAce = true;
                         target = 18;
                     }
                 }
-                dealerPts = calculatePts(dealerHand);
-            }
 
-            System.out.println("\nYour points: " + userPts);
-            System.out.println("Dealer points: " + dealerPts + "\n");
+                while (dealerPts < target) {
+                    dealerHand.add((Card) deck.remove((int) Math.random() * deck.size()));
+                    for (Card card : dealerHand) {
+                        if (card.getRank() == 1) {
+                            containsAce = true;
+                            target = 18;
+                        }
+                    }
+                    dealerPts = calculatePts(dealerHand);
+                }
+                System.out.println("Dealer points: " + dealerPts + "\n");
+            }
 
             if (userHand.size() == 2 && userPts == 21) {
                 System.out.println("Blackjack! You win an additional " + (bet * 3 / 2) + " G Dollars! Congrats, " + getName() + "!");
