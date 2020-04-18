@@ -26,14 +26,26 @@ public class Poker {
         return name;
     }
     
-    public static void start() {
-    	Scanner in = new Scanner(System.in);
-    	System.out.print("Poker:\nPlace a bet:");
-    	int betInt = in.nextInt();
-    	if(betInt < 1) {
-    		System.out.println("Minimum bet is 1 chip");
-    	} else if (betInt > 10) {
-    		System.out.println("Maximum bet is 10 chips");
-    	}
+    public void start() {
+    	System.out.println("\nWelcome to Poker, " + getName() + "!");
+        deck.populate();
+        deck.shuffle();
+        boolean continuePlaying = true;
+        while (getBalance() > 0 && continuePlaying) {
+        	int bet = 0;
+        	while (bet <= 0 || bet >= 10 || bet > balance) {
+        		System.out.println(bet);
+                System.out.println("\nYour balance: " + getBalance() + " G Dollars");
+                System.out.print("Place your bet: ");
+                bet = in.nextInt();
+                in.nextLine();
+            }
+        	Deck userHand = new Deck();
+        	userHand.add((Card) deck.remove((int) Math.random() * deck.size()));
+        	userHand.add((Card) deck.remove((int) Math.random() * deck.size()));
+        	userHand.add((Card) deck.remove((int) Math.random() * deck.size()));
+        	userHand.add((Card) deck.remove((int) Math.random() * deck.size()));userHand.add((Card) deck.remove((int) Math.random() * deck.size()));
+        }
+    	
     }
 }
