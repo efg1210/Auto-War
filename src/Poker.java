@@ -83,24 +83,149 @@ public class Poker {
                     	System.out.println("\nNew Hand:");
                 		update(userHand);
                 		traded = true;
-            		} else {
-            			System.out.println("\nOnly one trade is allowed.");
-            		}
+            		} else {System.out.println("\nOnly one trade is allowed.");}
             	} else if (yn == 3) {
             		Collections.sort(userHand);
             		System.out.println("\nYour hand sorted: ");
             		update(userHand);
             	} else if (yn == 4) {
+            		evaluate(userHand);
             		break;
             	}
         	}
-       
-        	
-        	
 //        }
     	
     }
     
+	public void evaluate(Deck userHand) {
+		if (this.royalFlush(userHand) == 1) {
+			System.out.println("You have a royal flush!");
+		} else if (this.straightFlush(userHand) == 1) {
+			System.out.println("You have a straight flush!");
+		} else if (this.fourOfaKind(userHand) == 1) {
+			System.out.println("You have four of a kind!");
+		} else if (this.fullHouse(userHand) == 1) {
+			System.out.println("You have a full house!");
+		} else if (this.flush(userHand) == 1) {
+			System.out.println("You have a flush!");
+		} else if (this.straight(userHand) == 1) {
+			System.out.println("You have a straight!");
+		} else if (this.triple(userHand) == 1) {
+			System.out.println("You have a triple!");
+		} else if (this.twoPairs(userHand) == 1) {
+			System.out.println("You have two pairs!");
+		} else if (this.pair(userHand) == 1) {
+			System.out.println("You have a pair!");
+		} else {
+			System.out.println("You have no hands.");
+		}
+	}
+
+
+	public int royalFlush(Deck userHand) {
+		if (userHand.get(0).getRank()== 1 && userHand.get(1).getRank() == 10 && userHand.get(2).getRank() == 11 && userHand.get(3).getRank() == 12 && userHand.get(4).getRank() == 13) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+
+	public int straightFlush(Deck userHand) {
+		for (int i = 1; i < 5; i++) {
+			if (userHand.get(0).getSuit() != userHand.get(i).getSuit()) {
+				return 0;
+			}
+		}
+		for (int x = 1; x < 5; x++) {
+			if (userHand.get(x-1).getRank() != (userHand.get(x).getRank() - 1)) {
+				return 0;
+			}				
+		}
+		return 1;		
+	}
+
+
+	public int fourOfaKind(Deck userHand) {
+		if (userHand.get(0).getRank() != userHand.get(3).getRank() && userHand.get(1).getRank() != userHand.get(4).getRank()) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
+
+	public int fullHouse(Deck userHand) {
+		int full = 0;
+		for (int i = 1; i < 5; i++) {
+			if (userHand.get(i-1).getRank() == userHand.get(i).getRank()) {
+				full++;
+			}
+		}
+		if (full == 3) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+
+	public int flush(Deck userHand) {
+		for (int i = 1; i < 5; i++) {
+			if (userHand.get(0).getSuit() != userHand.get(i).getSuit()) {
+				return 0;
+			}
+		}
+		return 1;
+	}
+		
+	public int straight(Deck userHand) {
+		for (int i = 1; i < 5; i++) {
+			if (userHand.get(i-1).getRank() != (userHand.get(i).getRank() - 1)) {
+				return 0;
+			}	
+		}
+		return 1;
+	}
+
+
+	public int triple(Deck userHand) {
+		if (userHand.get(0).getRank() == userHand.get(2).getRank() || userHand.get(2).getRank() == userHand.get(4).getRank()) {
+			return 1;
+		}
+		return 0;
+	}
+
+
+	public int twoPairs(Deck userHand) {
+		int pair = 0;
+		for(int i = 1; i < 5; i++) {
+			if (userHand.get(i-1).getRank() == userHand.get(i).getRank()) {
+				pair++;
+			}
+		}
+		if (pair == 2) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+
+	public int pair(Deck userHand) {
+		int pair = 0;
+		for(int i = 1; i < 5; i++) {
+			if (userHand.get(i-1).getRank() == userHand.get(i).getRank()) {
+				pair++;
+			}
+		}
+		if (pair == 1) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+     
     private void update(Deck userHand) {
     	int num = 1;
         for (Card card: userHand) {
@@ -108,5 +233,4 @@ public class Poker {
             num++;
         }
     }
-
 }
