@@ -32,7 +32,7 @@ public class Poker {
         deck.populate();
         deck.shuffle();
         boolean continuePlaying = true;
-//        while (getBalance() > 0 && continuePlaying) {
+        while (getBalance() > 0 && continuePlaying) {
         	int bet = 0;
             while (bet <= 0 || bet > 10 || bet > balance) {
                 System.out.println("\nYour balance: " + getBalance() + " G Dollars");
@@ -57,20 +57,24 @@ public class Poker {
         	boolean traded = false;
         	boolean sorted = false;
         	while(true) {
-        		System.out.println("\nMake a selection:\n1. Place another bet\n2. Trade in\n3. Sort Cards\n4. Payout");
+        		System.out.println("\nMake a selection:\n1. Place a second bet\n2. Trade in\n3. Sort Cards\n4. Payout");
             	yn = in.nextInt();
             	if(yn == 1) {
             		if(secondBet != 0) {
                 		System.out.println("\nSecond bet already made. Choose another option.");
-            		}		
-            		while (secondBet <= 0 || secondBet > 10 || secondBet > balance) {
-                      System.out.println("\nYour balance: " + getBalance() + " G Dollars");
-                      System.out.print("Place your bet: ");
-                      secondBet = in.nextInt();
-                      in.nextLine();
             		}
-            		balance -= secondBet;
-            		bet += secondBet;
+            		if (balance == 0) {
+            			System.out.println("\nYour balance: " + getBalance() + " G Dollars. \nInsufficient funds");
+            		} else {
+            			while (secondBet <= 0 || secondBet > 10 || secondBet > balance) {
+                            System.out.println("\nYour balance: " + getBalance() + " G Dollars");
+                            System.out.print("Place your bet: ");
+                            secondBet = in.nextInt();
+                            in.nextLine();
+                  		}
+                  		balance -= secondBet;
+                  		bet += secondBet;
+            		}
             	} else if (yn == 2) {
             		if(!traded) {
                 		int index = 0;
@@ -82,6 +86,7 @@ public class Poker {
                     	System.out.println("\nNew Hand:");
                 		update(hand);
                 		traded = true;
+                		sorted = false;
             		} else {System.out.println("\nOnly one trade is allowed.");}
             	} else if (yn == 3) {
             		sorted = true;
@@ -90,38 +95,68 @@ public class Poker {
             		update(hand);
             	} else if (yn == 4) {
             		if(!sorted) {
-            			System.out.println("Must sort hand before evaluating payout.");
+            			System.out.println("\nMust sort hand before evaluating payout.");
             		} else {
-            			evaluate(hand);
-                		break;
+            			if(payout(hand, bet) == 1) {
+            				break;
+            			} else if (payout(hand, bet) == 0) {
+            				continuePlaying = false;
+            				break;
+            			} else {
+            				System.out.println("Please select 1 or 2.");
+            			}
             		}
             	}
         	}
-//        }
+        }
     }
     
-	public void evaluate(Deck hand) {
+	public int payout(Deck hand, int bet) {
+		int yn = 0;
 		if (this.royalFlush(hand) == 1) {
-			System.out.println("\nYou have a royal flush!");
+			setBalance(balance+(bet*250));
+			System.out.println("\nYou have a royal flush! This pays 250-to-1. The funds have been transferred to your balance. Current Balance: " + getBalance() + " G Dollars.\nAnother round?\n1. Yes\n2. No");
+			yn = in.nextInt();
 		} else if (this.straightFlush(hand) == 1) {
-			System.out.println("\nYou have a straight flush!");
+			setBalance(balance+(bet*100));
+			System.out.println("\nYou have a straight flush! This pays 100-to-1. The funds have been transferred to your balance. Current Balance: " + getBalance() + " G Dollars.\nAnother round?\n1. Yes\n2. No");
+			yn = in.nextInt();
 		} else if (this.fourOfaKind(hand) == 1) {
-			System.out.println("\nYou have four of a kind!");
+			setBalance(balance+(bet*25));
+			System.out.println("\nYou have four of a kind! This pays 25-to-1. The funds have been transferred to your balance. Current Balance: " + getBalance() + " G Dollars.\nAnother round?\n1. Yes\n2. No");
+			yn = in.nextInt();
 		} else if (this.fullHouse(hand) == 1) {
-			System.out.println("\nYou have a full house!");
+			setBalance(balance+(bet*10));
+			System.out.println("\nYou have a full house! This pays 10-to-1. The funds have been transferred to your balance. Current Balance: " + getBalance() + " G Dollars.\nAnother round?\n1. Yes\n2. No");
+			yn = in.nextInt();
 		} else if (this.flush(hand) == 1) {
-			System.out.println("\nYou have a flush!");
+			setBalance(balance+(bet*5));
+			System.out.println("\nYou have a flush! This pays 5-to-1. The funds have been transferred to your balance. Current Balance: " + getBalance() + " G Dollars.\nAnother round?\n1. Yes\n. No");
+			yn = in.nextInt();
 		} else if (this.straight(hand) == 1) {
-			System.out.println("\nYou have a straight!");
+			setBalance(balance+(bet*3));
+			System.out.println("\nYou have a straight! This pays 3-to-1. The funds have been transferred to your balance. Current Balance: " + getBalance() + " G Dollars.\nAnother round?\n1. Yes\n2. No");
+			yn = in.nextInt();
 		} else if (this.triple(hand) == 1) {
-			System.out.println("\nYou have a triple!");
+			setBalance(balance+(bet*2));
+			System.out.println("\nYou have a triple! This pays 2-to-1. The funds have been transferred to your balance. Current Balance: " + getBalance() + " G Dollars.\nAnother round?\n1. Yes\n2. No");
+			yn = in.nextInt();
 		} else if (this.twoPairs(hand) == 1) {
-			System.out.println("\nYou have two pairs!");
+			setBalance(balance+bet);
+			System.out.println("\nYou have two pairs! This pays 1-to-1. The funds have been transferred to your balance. Current Balance: " + getBalance() + " G Dollars.\nAnother round?\n1. Yes\n2. No");
+			yn = in.nextInt();
 		} else if (this.pair(hand) == 1) {
-			System.out.println("\nYou have a pair!");
+			setBalance(balance+bet);
+			System.out.println("balance: "+balance);
+			System.out.println("bet: "+bet);
+			System.out.println("\nYou have a pair! You get your bet back. The funds have been transferred to your balance. Current Balance: " + getBalance() + " G Dollars.\nAnother round?\n1. Yes\n2. No");
+			yn = in.nextInt();
 		} else {
-			System.out.println("\nYou have no hands.");
+			setBalance(balance);
+			System.out.println("\nYou have no hands. You loose your bet. Current Balance: " + getBalance() + " G Dollars.\nAnother round?\n1. Yes\n2. No");
+			yn = in.nextInt();
 		}
+		return yn;
 	}
 
 
@@ -193,7 +228,7 @@ public class Poker {
 
 
 	public int triple(Deck hand) {
-		if (hand.get(0).getRank() == hand.get(2).getRank() || hand.get(2).getRank() == hand.get(4).getRank()) {
+		if (hand.get(0).getRank() == hand.get(2).getRank() || hand.get(1).getRank() == hand.get(3).getRank() || hand.get(2).getRank() == hand.get(4).getRank()) {
 			return 1;
 		}
 		return 0;
