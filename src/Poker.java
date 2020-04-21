@@ -98,8 +98,11 @@ public class Poker {
             			System.out.println("\nMust sort hand before evaluating payout.");
             		} else {
             			if(payout(hand, bet) == 1) {
+            				if(getBalance() == 0) {
+            					System.out.println("\nInsufficient funds. Thank you for playing poker.\n");
+            				}
             				break;
-            			} else if (payout(hand, bet) == 0) {
+            			} else if (payout(hand, bet) == 2) {
             				continuePlaying = false;
             				break;
             			} else {
@@ -109,6 +112,7 @@ public class Poker {
             	}
         	}
         }
+        
     }
     
 	public int payout(Deck hand, int bet) {

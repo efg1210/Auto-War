@@ -14,15 +14,15 @@ public class Main {
     }
 
     public void startup() {      
-//    	System.out.println("Choose a game to play\n1. Poker\n2. BlackJack");
-//    	int game = in.nextInt();
-//    	if(game == 1) {
+    	System.out.println("Choose a game to play\n1. Poker\n2. BlackJack");
+    	int game = in.nextInt();
+    	if(game == 1) {
     		Poker poker = new Poker(in, 10, "Nicole");
             poker.start();
-//    	} else if (game == 2) {
-//    		BlackJack bj = new BlackJack(in, 10, "Emily");
-//            bj.start();
-//    	}        
+    	} else if (game == 2) {
+    		BlackJack bj = new BlackJack(in, 10, "Emily");
+            bj.start();
+    	}        
         
     }
 }
