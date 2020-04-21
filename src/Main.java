@@ -13,6 +13,7 @@ public class Main {
     }
 
     public void startup() {        
-        
+        BlackJack bj = new BlackJack(in, 10, "Emily");
+        bj.start();
     }
 }
