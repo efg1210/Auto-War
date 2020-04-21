@@ -28,7 +28,7 @@ public class BlackJack {
         return name;
     }
 
-    public void start() {
+    public int start() {
         System.out.println("\nWelcome to Blackjack, " + getName() + "!");
         deck.populate();
         deck.shuffle();
@@ -126,6 +126,7 @@ public class BlackJack {
             System.out.println(message);
             continuePlaying = response("\nDo you want to continue playing (y/n): ");
         }
+        return balance;
     }
 
     private void update(Deck userHand, Deck dealerHand) {

@@ -15,7 +15,7 @@ public class Main {
     public void startup() {
         
         String name = welcomeName();
-        int balance = balance();
+        int balance = balance(0);
         
         boolean on = true;
         while(on) {
@@ -31,7 +31,7 @@ public class Main {
             int choice = in.nextInt();
             in.nextLine();
             switch (choice) {
-                case 1: balance += balance(); break;
+                case 1: balance += balance(balance); break;
                 case 2:
                     BlackJack bj = new BlackJack(in, balance, name);
                     balance = bj.start();
@@ -47,7 +47,7 @@ public class Main {
                     System.out.println("Have a good day " + name + "!");
                     name = "";
                     name = welcomeName();
-                    balance = balance();
+                    balance = balance(balance);
                     break;
                 case 5:
                     System.out.println("Goodbye " + name + "!");
@@ -65,10 +65,22 @@ public class Main {
         return in.nextLine();
     }
 
-    private int balance() {
-        System.out.print("Amount of dollars to convert to G Dollars: ");
-        int deposit = in.nextInt();
-        in.nextLine();
-        return deposit;
+    private int balance(int currentBalance) {
+        if (currentBalance < 1000) {
+            System.out.print("Amount of dollars to convert to G Dollars: ");
+            int deposit = in.nextInt();
+            in.nextLine();
+            while (deposit < 0 || deposit > 1000) {
+                System.out.println("Invalid deposit. Try again.");
+                System.out.print("Amount of dollars to convert to G Dollars: ");
+                deposit = in.nextInt();
+                in.nextLine();
+            }
+            return deposit;
+        } else {
+            System.out.println("You already have " + currentBalance + " G Dollars. You cannot add more");
+            return 0;
+        }
+        
     }
 }
