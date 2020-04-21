@@ -19,7 +19,7 @@ public class Main {
         
         boolean on = true;
         while(on) {
-            System.out.println("Your balance: " + balance + "G Dollars\n");
+            System.out.println("Your balance: " + balance + " G Dollars\n");
             System.out.println("\nHere are your options!");
             System.out.println("1. Convert more money to G Dollars");
             System.out.println("2. Play blackjack");
@@ -34,11 +34,11 @@ public class Main {
                 case 1: balance += balance(); break;
                 case 2:
                     BlackJack bj = new BlackJack(in, balance, name);
-                    bj.start();
+                    balance = bj.start();
                     break;
                 case 3:
                     // Poker poker = new Poker(in, balance, name);
-                    // poker.start();
+                    // balance = poker.start();
                     System.out.println("Poker (please delete this line, line 41)");
                     break;
                 case 4:
@@ -61,7 +61,7 @@ public class Main {
 
     private String welcomeName() {
         System.out.println("\nWelcome to G Games!");
-        System.out.print("Please tell us your name: ");
+        System.out.print("Your name: ");
         return in.nextLine();
     }
 

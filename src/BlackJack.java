@@ -62,6 +62,7 @@ public class BlackJack {
 
             while (!stay && userPts < 21) {
                 System.out.println("\nOptions:\n1. Hit\n2. Stay\n3. Sort cards\n");
+                System.out.print("Selection: ");
                 String answer = in.nextLine();
                 if (answer.equals("1") || (answer.toLowerCase()).equals("hit")) {
                     userHand.add((Card) deck.remove((int) Math.random() * deck.size()));
