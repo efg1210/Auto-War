@@ -12,8 +12,63 @@ public class Main {
         this.in = new Scanner(System.in);
     }
 
-    public void startup() {        
-        BlackJack bj = new BlackJack(in, 10, "Emily");
-        bj.start();
+    public void startup() {
+        
+        String name = welcomeName();
+        int balance = balance();
+        
+        boolean on = true;
+        while(on) {
+            System.out.println("Your balance: " + balance + "G Dollars\n");
+            System.out.println("\nHere are your options!");
+            System.out.println("1. Convert more money to G Dollars");
+            System.out.println("2. Play blackjack");
+            System.out.println("3. Play poker");
+            System.out.println("4. Convert G Dollars to money and end session");
+            System.out.println("5. Turn game off");
+            System.out.println("Note: please enter the corresponding number to respond");
+            System.out.print("\nSelection: ");
+            int choice = in.nextInt();
+            in.nextLine();
+            switch (choice) {
+                case 1: balance += balance(); break;
+                case 2:
+                    BlackJack bj = new BlackJack(in, balance, name);
+                    bj.start();
+                    break;
+                case 3:
+                    // Poker poker = new Poker(in, balance, name);
+                    // poker.start();
+                    System.out.println("Poker (please delete this line, line 41)");
+                    break;
+                case 4:
+                    balance = 0;
+                    System.out.println("G Dollars converted to money");
+                    System.out.println("Have a good day " + name + "!");
+                    name = "";
+                    name = welcomeName();
+                    balance = balance();
+                    break;
+                case 5:
+                    System.out.println("Goodbye " + name + "!");
+                    on = false;
+                    break;
+                default:
+                    System.out.println("Please enter again.");
+            }
+        }
+    }
+
+    private String welcomeName() {
+        System.out.println("\nWelcome to G Games!");
+        System.out.print("Please tell us your name: ");
+        return in.nextLine();
+    }
+
+    private int balance() {
+        System.out.print("Amount of dollars to convert to G Dollars: ");
+        int deposit = in.nextInt();
+        in.nextLine();
+        return deposit;
     }
 }
