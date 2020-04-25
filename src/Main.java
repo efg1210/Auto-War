@@ -1,4 +1,4 @@
-package src;
+//package src;
 import java.util.*;
 
 public class Main {
@@ -21,7 +21,7 @@ public class Main {
         boolean on = true;
         while(on) {
             System.out.println("Your balance: " + balance + " G Dollars\n");
-            System.out.println("\nHere are your options!");
+            System.out.println("Here are your options!");
             System.out.println("1. Convert more money to G Dollars");
             System.out.println("2. Play blackjack");
             System.out.println("3. Play poker");
@@ -38,9 +38,9 @@ public class Main {
                     balance = bj.start();
                     break;
                 case 3:
-                    // Poker poker = new Poker(in, balance, name);
-                    // balance = poker.start();
-                    System.out.println("Poker (please delete this line, line 41)");
+                    Poker poker = new Poker(in, balance, name);
+                    balance = poker.start();
+                    //System.out.println("Poker (please delete this line, line 41)");
                     break;
                 case 4:
                     balance = 0;

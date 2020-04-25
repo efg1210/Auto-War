@@ -1,4 +1,4 @@
-package src;
+//package src;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -37,7 +37,7 @@ public class BlackJack {
             int bet = 0;
             while (bet <= 0 || bet > 10 || bet > balance) {
                 System.out.println("\nYour balance: " + getBalance() + " G Dollars");
-                System.out.print("Place your bet: ");
+                System.out.print("Place your bet (must be between 1 and 10 G Dollars): ");
                 bet = in.nextInt();
                 in.nextLine();
             }
