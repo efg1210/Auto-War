@@ -1,3 +1,4 @@
+package src;
 import java.util.*;
 
 public class Main {
@@ -80,7 +81,6 @@ public class Main {
         } else {
             System.out.println("You already have " + currentBalance + " G Dollars. You cannot add more");
             return 0;
-        }
-        
+        }        
     }
 }
