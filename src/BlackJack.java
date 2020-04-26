@@ -1,6 +1,5 @@
-//package src;
+package src;
 import java.util.Scanner;
-import java.util.Random;
 
 public class BlackJack {
     

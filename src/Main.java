@@ -1,4 +1,4 @@
-//package src;
+package src;
 import java.util.*;
 
 public class Main {
@@ -14,9 +14,15 @@ public class Main {
     }
 
     public void startup() {
-        
+    	int balance;
         String name = welcomeName();
-        int balance = balance(0);
+        String bestTeacher = "ryan wilson or ryan john wilson or mr. wilson or mr wilson";
+        if(bestTeacher.contains(name.toLowerCase())) {
+        	System.out.println("\nWell hello Mr. Wilson! You found the easter egg and you automatically get 1000 G Dollars! Happy Playing.");
+        	balance = 1000;
+        } else {
+        	balance = balance(0);
+        }
         
         boolean on = true;
         while(on) {
@@ -27,7 +33,6 @@ public class Main {
             System.out.println("3. Play poker");
             System.out.println("4. Convert G Dollars to money and end session");
             System.out.println("5. Turn game off");
-            System.out.println("Note: please enter the corresponding number to respond");
             System.out.print("\nSelection: ");
             int choice = in.nextInt();
             in.nextLine();

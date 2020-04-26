@@ -1,4 +1,4 @@
-//package src;
+package src;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -98,12 +98,13 @@ public class Poker {
             		if (!sorted) {
             			System.out.println("\nMust sort hand before evaluating payout.");
             		} else {
-            			if (payout(hand, bet) == 1) {
+            			int payout = payout(hand, bet);
+            			if (payout == 1) {
             				if (getBalance() == 0) {
             					System.out.println("\nInsufficient funds. Thank you for playing poker.\n");
             				}
             				break;
-            			} else if (payout(hand, bet) == 2) {
+            			} else if (payout == 2) {
             				continuePlaying = false;
             				break;
             			} else {
