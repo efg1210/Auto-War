@@ -9,7 +9,7 @@ public class Deck extends ArrayList<Card> {
         super();
     }
 
-    //adds all of the cards to the deck, in order
+    //adds all of the cards to the deck
     public void populate() {
         String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
         for (int i = 1; i < 14; i++) {

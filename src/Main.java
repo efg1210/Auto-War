@@ -22,6 +22,28 @@ public class Main {
         System.out.print("You will be playing against " + computer.getName());
         System.out.println(" today! Let's play!");
 
+        giveHands();
+        
         this.in.close();
+    }
+
+    /*
+    makes a temp deck of all cards
+    shuffles them
+    hands them out
+    and shuffles each hand
+    (it should already be random, though)
+    */
+    private void giveHands() {
+        Deck deck = new Deck();
+        deck.populate();
+        deck.shuffle();
+        int length = deck.size();
+        for (int i = 0; i < length; i+=2) {
+            user.addToHand(deck.deal());
+            computer.addToHand(deck.deal());
+        }
+        user.shuffleHand();
+        computer.shuffleHand();
     }
 }

@@ -44,10 +44,20 @@ public class Player {
         this.winnings.add(card);
     }
 
+    //adds add cards to hand
+    public void addToHand(Card card) {
+        this.winnings.add(card);
+    }
+
     //replaces hand deck with winnings deck
     private void replaceHand() {
         this.winnings.shuffle();
         setHand(getWinnings());
         setWinnings(new Deck());
+    }
+
+    //shuffles hand
+    public void shuffleHand() {
+        this.hand.shuffle();
     }
 }
