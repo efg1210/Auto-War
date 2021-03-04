@@ -12,6 +12,8 @@ public class Card implements Comparable<Card> {
         this.suit = suit;
     }
 
+    //getters
+
     public int getRank() {
         return this.rank;
     }
@@ -20,6 +22,10 @@ public class Card implements Comparable<Card> {
         return this.suit;
     }
 
+    //compares the cards to each other
+    //returns -1 if acted on is less (in rank or suit)
+    //returns 1 if passed in is less (in rank or suit)
+    //returns 0 if they are equal
     @Override
     public int compareTo(Card c) {
         if (this.getRank() < c.getRank()) {

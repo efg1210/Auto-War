@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Main {
     private Scanner in;
-
     public static void main (String[] args) {
         Main main = new Main();
         main.startup();
@@ -13,6 +12,7 @@ public class Main {
     }
 
     public void startup() {
-    }
 
+        this.in.close();
+    }
 }

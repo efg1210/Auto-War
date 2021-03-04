@@ -9,6 +9,7 @@ public class Deck extends ArrayList<Card> {
         super();
     }
 
+    //adds all of the cards to the deck, in order
     public void populate() {
         String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
         for (int i = 1; i < 14; i++) {
@@ -26,8 +27,8 @@ public class Deck extends ArrayList<Card> {
         Collections.sort(this, (a, b) -> a.compareTo(b));
     }
 
+    //deals first card in the deck
     public Card deal() {
-        int index = (int) (Math.random() * (this.size() + 1));
-        return this.remove(index);
+        return this.remove(0);
     }
 }
