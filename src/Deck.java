@@ -7,11 +7,10 @@ public class Deck extends ArrayList<Card> {
 
     public Deck() {
         super();
-        //populate();
     }
 
     public void populate() {
-        String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades"};
+        String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
         for (int i = 1; i < 14; i++) {
           for (String suit : suits) {
             this.add(new Card(i, suit));
