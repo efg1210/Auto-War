@@ -4,6 +4,8 @@ public class Main {
     private Scanner in;
     private Player user;
     private Player computer;
+    private ArrayList<Card> cardsFromUser = new ArrayList<Card>();
+    private ArrayList<Card> cardsFromComputer = new ArrayList<Card>();
     public static void main (String[] args) {
         Main main = new Main();
         main.startup();
@@ -25,29 +27,42 @@ public class Main {
         giveHands();
         
         //while (user.getHand().size() >= 1 && computer.getHand().size() >= 1) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 30; i++) {
             round();
         }
 
         this.in.close();
     }
 
-    private void round() {
-        Card userCard = user.getTopCard();
-        Card computerCard = computer.getTopCard();
-
-        if (userCard.compareTo(computerCard) > 0) {
-            user.addToWinnings(userCard);
-            user.addToWinnings(computerCard);
-        } else if (userCard.compareTo(computerCard) < 0) {
-            computer.addToWinnings(userCard);
-            computer.addToWinnings(computerCard);
-        } else {
-            
+    private void giveCards(Player p) {
+        for (Card c: cardsFromUser) {
+            p.addToWinnings(c);
         }
+        cardsFromUser = new ArrayList<Card>();
+        for (Card c: cardsFromComputer) {
+            p.addToWinnings(c);
+        }
+        cardsFromComputer = new ArrayList<Card>();
+    }
+    
+    private void round() {
+        cardsFromUser.add(user.getTopCard());
+        cardsFromComputer.add(computer.getTopCard());
 
-        System.out.println("\n\nUser card: " + userCard);
-        System.out.println("Computer card: " + computerCard);
+        System.out.println("\n\nUser card: " + cardsFromUser.get(0));
+        System.out.println("Computer card: " + cardsFromComputer.get(0));
+
+        if (cardsFromUser.get(0).compareTo(cardsFromComputer.get(0)) > 0) {
+            giveCards(user);
+        } else if (cardsFromUser.get(0).compareTo(cardsFromComputer.get(0)) < 0) {
+            giveCards(computer);
+        } else {
+            for (int i = 0; i < 3; i++) {
+                cardsFromUser.add(user.getTopCard());
+                cardsFromComputer.add(computer.getTopCard());
+                round();
+            }
+        }
 
         System.out.println("\nUser winnings: " + user.getWinnings());
         System.out.println("Computer winnings: " + computer.getWinnings());
