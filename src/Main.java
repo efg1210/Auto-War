@@ -24,7 +24,36 @@ public class Main {
 
         giveHands();
         
+        //while (user.getHand().size() >= 1 && computer.getHand().size() >= 1) {
+        for (int i = 0; i < 10; i++) {
+            round();
+        }
+
         this.in.close();
+    }
+
+    private void round() {
+        Card userCard = user.getTopCard();
+        Card computerCard = computer.getTopCard();
+
+        if (userCard.compareTo(computerCard) > 0) {
+            user.addToWinnings(userCard);
+            user.addToWinnings(computerCard);
+        } else if (userCard.compareTo(computerCard) < 0) {
+            computer.addToWinnings(userCard);
+            computer.addToWinnings(computerCard);
+        } else {
+            
+        }
+
+        System.out.println("\n\nUser card: " + userCard);
+        System.out.println("Computer card: " + computerCard);
+
+        System.out.println("\nUser winnings: " + user.getWinnings());
+        System.out.println("Computer winnings: " + computer.getWinnings());
+
+        System.out.println("\nUser hand length: " + user.getHand().size());
+        System.out.println("Computer hand length: " + computer.getHand().size());
     }
 
     /*

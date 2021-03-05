@@ -34,12 +34,6 @@ public class Card implements Comparable<Card> {
             return -1;
         } else if (this.getRank() > c.getRank()) {
             return 1;
-        } else {
-            if (this.getSuit().compareTo(c.getSuit()) < 0) {
-                return -1;
-            } else if (this.getSuit().compareTo(c.getSuit()) > 0) {
-                return 1;
-            }
         }
         return 0;
     }

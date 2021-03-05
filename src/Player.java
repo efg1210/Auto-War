@@ -60,4 +60,9 @@ public class Player {
     public void shuffleHand() {
         this.hand.shuffle();
     }
+
+    //picks top card from deck and deletes that card from hand
+    public Card getTopCard() {
+        return this.getHand().deal();
+    }
 }
