@@ -26,8 +26,7 @@ public class Main {
 
         giveHands();
         
-        //while (user.getHand().size() >= 1 && computer.getHand().size() >= 1) {
-        for (int i = 0; i < 30; i++) {
+        while (user.getHand().size() >= 1 && computer.getHand().size() >= 1) {
             round();
         }
 
@@ -49,8 +48,8 @@ public class Main {
         cardsFromUser.add(user.getTopCard());
         cardsFromComputer.add(computer.getTopCard());
 
-        System.out.println("\n\nUser card: " + cardsFromUser.get(0));
-        System.out.println("Computer card: " + cardsFromComputer.get(0));
+        // System.out.println("\n\nUser card: " + cardsFromUser.get(0));
+        // System.out.println("Computer card: " + cardsFromComputer.get(0));
 
         if (cardsFromUser.get(cardsFromUser.size() - 1).compareTo(cardsFromComputer.get(cardsFromComputer.size() - 1)) > 0) {
             giveCards(user);
@@ -64,11 +63,11 @@ public class Main {
             }
         }
 
-        System.out.println("\nUser winnings: " + user.getWinnings());
-        System.out.println("Computer winnings: " + computer.getWinnings());
+        // System.out.println("\nUser winnings: " + user.getWinnings());
+        // System.out.println("Computer winnings: " + computer.getWinnings());
 
-        System.out.println("\nUser hand length: " + user.getHand().size());
-        System.out.println("Computer hand length: " + computer.getHand().size());
+        // System.out.println("\nUser hand length: " + user.getHand().size());
+        // System.out.println("Computer hand length: " + computer.getHand().size());
     }
 
     /*
