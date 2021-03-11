@@ -52,9 +52,9 @@ public class Main {
         System.out.println("\n\nUser card: " + cardsFromUser.get(0));
         System.out.println("Computer card: " + cardsFromComputer.get(0));
 
-        if (cardsFromUser.get(0).compareTo(cardsFromComputer.get(0)) > 0) {
+        if (cardsFromUser.get(cardsFromUser.size() - 1).compareTo(cardsFromComputer.get(cardsFromComputer.size() - 1)) > 0) {
             giveCards(user);
-        } else if (cardsFromUser.get(0).compareTo(cardsFromComputer.get(0)) < 0) {
+        } else if (cardsFromUser.get(cardsFromUser.size() - 1).compareTo(cardsFromComputer.get(cardsFromComputer.size() - 1)) < 0) {
             giveCards(computer);
         } else {
             for (int i = 0; i < 3; i++) {
