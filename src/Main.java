@@ -6,6 +6,7 @@ public class Main {
     private Player computer;
     private ArrayList<Card> cardsFromUser = new ArrayList<Card>();
     private ArrayList<Card> cardsFromComputer = new ArrayList<Card>();
+    private int roundCounter = 0;
     public static void main (String[] args) {
         Main main = new Main();
         main.startup();
@@ -20,9 +21,9 @@ public class Main {
         this.user = new Player(in.nextLine());
         this.computer = new Player("Computer");
 
-        System.out.print("Hello " + user.getName() + "! ");
+        System.out.print("\nHello " + user.getName() + "! ");
         System.out.print("You will be playing against " + computer.getName());
-        System.out.println(" today! Let's play!");
+        System.out.println(" today! Let's play!\n");
 
         giveHand();
         
@@ -32,6 +33,7 @@ public class Main {
 
         boolean userWon = (user.getHand().size() > computer.getHand().size());
         System.out.println("\nWinner: " + (userWon ? user.getName() : computer.getName()));
+        System.out.println("Number of rounds: " + roundCounter);
 
         this.in.close();
     }
@@ -48,16 +50,20 @@ public class Main {
     }
     
     private void round() {
+        roundCounter++;
+
         cardsFromUser.add(user.getTopCard());
         cardsFromComputer.add(computer.getTopCard());
 
-        System.out.println("\n\nUser card: " + cardsFromUser.get(0));
-        System.out.println("Computer card: " + cardsFromComputer.get(0));
+        // System.out.println("\n\nUser card: " + cardsFromUser.get(0));
+        // System.out.println("Computer card: " + cardsFromComputer.get(0));
 
         if (cardsFromUser.get(cardsFromUser.size() - 1).compareTo(cardsFromComputer.get(cardsFromComputer.size() - 1)) > 0) {
             giveCards(user);
+            System.out.println("This round's winner: " + user.getName());
         } else if (cardsFromUser.get(cardsFromUser.size() - 1).compareTo(cardsFromComputer.get(cardsFromComputer.size() - 1)) < 0) {
             giveCards(computer);
+            System.out.println("This round's winner: " + computer.getName());
         } else {
             if (cardsFromUser.size() >= 4 && cardsFromComputer.size() >= 4) {
                 for (int i = 0; i < 3; i++) {
@@ -82,11 +88,11 @@ public class Main {
             }
         }
 
-        System.out.println("\nUser winnings: " + user.getWinnings());
-        System.out.println("Computer winnings: " + computer.getWinnings());
+        // System.out.println("\nUser winnings: " + user.getWinnings());
+        // System.out.println("Computer winnings: " + computer.getWinnings());
 
-        System.out.println("\nUser hand length: " + user.getHand().size());
-        System.out.println("Computer hand length: " + computer.getHand().size());
+        // System.out.println("\nUser hand length: " + user.getHand().size());
+        // System.out.println("Computer hand length: " + computer.getHand().size());
     }
 
     /*
