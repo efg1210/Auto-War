@@ -44,6 +44,7 @@ public class Main {
         System.out.println();
 
         do {
+            reset();
             giveHand();
             
             while (user.getHand().size() >= 1 && computer.getHand().size() >= 1) {
@@ -60,6 +61,17 @@ public class Main {
         System.out.println("\nBye!");
 
         this.in.close();
+    }
+
+    //resets for a new game
+    private void reset() {
+        roundCounter = 0;
+
+        cardsFromUser = new ArrayList<Card>();
+        cardsFromComputer = new ArrayList<Card>();
+
+        user = new Player (user.getName());
+        computer = new Player (computer.getName());
     }
 
     //converts a message from the user to y/n
@@ -92,10 +104,10 @@ public class Main {
 
         if (cardsFromUser.get(cardsFromUser.size() - 1).compareTo(cardsFromComputer.get(cardsFromComputer.size() - 1)) > 0) {
             giveCards(user);
-            System.out.println("This round's winner: " + user.getName());
+            System.out.println("Winner of round " + roundCounter + ": " + user.getName());
         } else if (cardsFromUser.get(cardsFromUser.size() - 1).compareTo(cardsFromComputer.get(cardsFromComputer.size() - 1)) < 0) {
             giveCards(computer);
-            System.out.println("This round's winner: " + computer.getName());
+            System.out.println("Winner of round " + roundCounter + ": " + computer.getName());
         } else {
             if (cardsFromUser.size() >= 4 && cardsFromComputer.size() >= 4) {
                 for (int i = 0; i < 3; i++) {
