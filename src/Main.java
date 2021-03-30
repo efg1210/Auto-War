@@ -23,7 +23,7 @@ public class Main {
         in.nextLine();
 
         if (numPlayers == 1) {
-            System.out.print("Your name: ");
+            System.out.print("\nYour name: ");
             this.user = new Player(in.nextLine());
             this.computer = new Player("Computer");
         } else {
@@ -33,21 +33,37 @@ public class Main {
             this.computer = new Player(in.nextLine());
         }
 
-        System.out.print("\nHello " + user.getName() + "! ");
-        System.out.print("You will be playing against " + computer.getName());
-        System.out.println(" today! Let's play!\n");
+        do {
+            System.out.print("\nHello " + user.getName() + "! ");
+            System.out.print("You will be playing against " + computer.getName());
+            System.out.print(" today! Let's play! Are you ready? ");
+        } while (!toBoolean(in.nextLine()));
+        System.out.println();
 
-        giveHand();
-        
-        while (user.getHand().size() >= 1 && computer.getHand().size() >= 1) {
-            round();
-        }
+        do {
+            giveHand();
+            
+            while (user.getHand().size() >= 1 && computer.getHand().size() >= 1) {
+                round();
+            }
 
-        boolean userWon = (user.getHand().size() > computer.getHand().size());
-        System.out.println("\nWinner: " + (userWon ? user.getName() : computer.getName()));
-        System.out.println("Number of rounds: " + roundCounter);
+            boolean userWon = (user.getHand().size() > computer.getHand().size());
+            System.out.println("\nWinner: " + (userWon ? user.getName() : computer.getName()));
+            System.out.println("Number of rounds: " + roundCounter);
+
+            System.out.print("\nPlay again (y/n)? ");
+        } while (toBoolean(in.nextLine()));
+
+        System.out.println("\nBye!");
 
         this.in.close();
+    }
+
+    private Boolean toBoolean(String response) {
+        if (response.contains("y") || response.contains("Y")) {
+            return true;
+        }
+        return false;
     }
 
     private void giveCards(Player p) {
