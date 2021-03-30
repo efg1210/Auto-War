@@ -17,9 +17,21 @@ public class Main {
     }
 
     public void startup() {
-        System.out.print("Your name: ");
-        this.user = new Player(in.nextLine());
-        this.computer = new Player("Computer");
+
+        System.out.print("Number of Players (1 or 2): ");
+        int numPlayers = in.nextInt();
+        in.nextLine();
+
+        if (numPlayers == 1) {
+            System.out.print("Your name: ");
+            this.user = new Player(in.nextLine());
+            this.computer = new Player("Computer");
+        } else {
+            System.out.print("1st player's name: ");
+            this.user = new Player(in.nextLine());
+            System.out.print("2nd player's name: ");
+            this.computer = new Player(in.nextLine());
+        }
 
         System.out.print("\nHello " + user.getName() + "! ");
         System.out.print("You will be playing against " + computer.getName());
