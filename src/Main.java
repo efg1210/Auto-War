@@ -4,20 +4,23 @@ public class Main {
     private Scanner in;
     private Player user;
     private Player computer;
+    
     private ArrayList<Card> cardsFromUser = new ArrayList<Card>();
     private ArrayList<Card> cardsFromComputer = new ArrayList<Card>();
+    
     private int roundCounter = 0;
     public static void main (String[] args) {
         Main main = new Main();
         main.startup();
     }
 
+    //starts Main class
     public Main() {
         in = new Scanner(System.in);
     }
 
+    //starts the game
     public void startup() {
-
         System.out.print("Number of Players (1 or 2): ");
         int numPlayers = in.nextInt();
         in.nextLine();
@@ -59,6 +62,8 @@ public class Main {
         this.in.close();
     }
 
+    //converts a message from the user to y/n
+    //since users are told to use y/n, all y responses are yes
     private Boolean toBoolean(String response) {
         if (response.contains("y") || response.contains("Y")) {
             return true;
@@ -66,6 +71,7 @@ public class Main {
         return false;
     }
 
+    //gives the current cards to the winning player
     private void giveCards(Player p) {
         for (Card c: cardsFromUser) {
             p.addToWinnings(c);
@@ -77,14 +83,12 @@ public class Main {
         cardsFromComputer = new ArrayList<Card>();
     }
     
+    //does the logic of the round
     private void round() {
         roundCounter++;
 
         cardsFromUser.add(user.getTopCard());
         cardsFromComputer.add(computer.getTopCard());
-
-        // System.out.println("\n\nUser card: " + cardsFromUser.get(0));
-        // System.out.println("Computer card: " + cardsFromComputer.get(0));
 
         if (cardsFromUser.get(cardsFromUser.size() - 1).compareTo(cardsFromComputer.get(cardsFromComputer.size() - 1)) > 0) {
             giveCards(user);
@@ -115,12 +119,6 @@ public class Main {
                 }
             }
         }
-
-        // System.out.println("\nUser winnings: " + user.getWinnings());
-        // System.out.println("Computer winnings: " + computer.getWinnings());
-
-        // System.out.println("\nUser hand length: " + user.getHand().size());
-        // System.out.println("Computer hand length: " + computer.getHand().size());
     }
 
     /*
